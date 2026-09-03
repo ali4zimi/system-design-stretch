@@ -1,52 +1,38 @@
-{
-  "artists": [
-    {
-      "name": "Pinkfong",
-      "genre": "Children's music",
-      "total": "11:31",
-      "photo": "images/pinkfong.jpeg",
-      "id": "4R1A5Dgl7dI"
-    },
-    {
-      "name": "Adriano Celentano",
-      "genre": "Italian pop",
-      "total": "20:52",
-      "photo": "images/adriano-celentano.jpg",
-      "id": "vfIPuDkjIWI"
-    },
-    {
-      "name": "Asake",
-      "genre": "Afrobeats",
-      "total": "14:08",
-      "photo": "images/asake.jpg",
-      "id": "Dg8NhPDc49A"
-    },
-    {
-      "name": "Miyagi and Andy Panda",
-      "genre": "Hip-hop",
-      "total": "16:21",
-      "photo": "images/miyagi-and-andy-panda.jpg",
-      "id": "CFtdryQHc2U"
-    },
-    {
-      "name": "Johnny Cash",
-      "genre": "Country",
-      "total": "15:40",
-      "photo": "images/johnny-cash.jpg",
-      "id": "ogu7ImziMQo"
-    },
-    {
-      "name": "Taylor Swift",
-      "genre": "Pop",
-      "total": "18:30",
-      "photo": "images/taylor-swift.png",
-      "id": "rV3RF4NDijk"
-    },
-    {
-      "name": "Aryana Grande",
-      "genre": "Pop",
-      "id": "gQFGqO6Rc6U"
-    }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
-}
+[
+  {
+    "name": "Pinkfong",
+    "genre": "Children's music",
+    "total": "11:31",
+    "photo": "images/pinkfong.jpeg"
+  },
+  {
+    "name": "Adriano Celentano",
+    "genre": "Italian pop",
+    "total": "20:52",
+    "photo": "images/adriano-celentano.jpg"
+  },
+  {
+    "name": "Asake",
+    "genre": "Afrobeats",
+    "total": "14:08",
+    "photo": "images/asake.jpg"
+  },
+  {
+    "name": "Miyagi and Andy Panda",
+    "genre": "Hip-hop",
+    "total": "16:21",
+    "photo": "images/miyagi-and-andy-panda.jpg"
+  },
+  {
+    "name": "Johnny Cash",
+    "genre": "Country",
+    "total": "15:40",
+    "photo": "images/johnny-cash.jpg"
+  },
+  {
+    "name": "Taylor Swift",
+    "genre": "Pop",
+    "total": "18:30",
+    "photo": "images/taylor-swift.png"
+  }
+]
