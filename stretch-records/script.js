@@ -118,19 +118,4 @@ form.addEventListener('submit', (event) => {
 
 });
 
-function renderLabel(label) {
-  console.log(`Stretch Records label: ${label.name}, ${label.city}`);
-}
-
-
-msg_elm.textContent = 'Loading artists...';
-
-Promise.all([loadArtists(), loadLabel()])
-  .then(([artists, label]) => {
-    renderCards(artists);
-    renderLabel(label);
-    msg_elm.textContent = '';
-  })
-  .catch((error) => {
-    msg_elm.textContent = `Error loading the page: ${error.message}`;
-  });
+loadArtists();
