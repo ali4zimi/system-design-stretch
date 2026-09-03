@@ -134,3 +134,5 @@ Promise.all([loadArtists(), loadLabel()])
   .catch((error) => {
     msg_elm.textContent = `Error loading the page: ${error.message}`;
   });
+
+  
