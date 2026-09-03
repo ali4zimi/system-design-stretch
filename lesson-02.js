@@ -16,12 +16,18 @@ setTimeout(() => console.log("intermission"), 500);
 console.log("lights down");
 
 // Your prediction:
-// 1.
-// 2.
-// 3.
-// 4.
-// 5.
-// 6.
+// 1. doors open
+// 2. main act
+// 3. lights down
+// 4. soundcheck
+// 5. intermission
+// 6. encore
+
+// All predictions were correct in the first try :)
+
+// Task 3: When added the blocker for the feature button, it freezed the feature functionality  
+// because the setTimeout is asynchronous and the main thread is blocked by the synchronous code.
+
 
 // ===== Provided program (task step 4): trace the call stack =====
 // Trace this as a written call stack diagram in comments, listing every push
@@ -29,10 +35,15 @@ console.log("lights down");
 // confirm the stack trace in the console matches your diagram, innermost
 // first. Keep it commented out while you work on step 2.
 
-// function prepare(artist) {
-//   return "Now playing " + format(artist);
-// }
-// function format(artist) {
-//   return artist.name.toUpperCase();
-// }
-// console.log(prepare({ name: "Asake" }));
+function prepare(artist) {
+  return "Now playing " + format(artist);
+}
+function format(artist) {
+  return artist.name.toUpperCase();
+}
+console.log(prepare({ name: "Asake" }));
+
+
+// C:\Users\aliba\Desktop\sap-internship\system-design-stretch\lesson-02.js:42
+// return artist.name.toUpperCase()d;
+// SyntaxError: Unexpected identifier 'd'
