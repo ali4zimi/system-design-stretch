@@ -6,26 +6,27 @@
 
 const msg_elm = document.querySelector('.status');
 
-// Fetches and validates the roster. It does not touch the page: rendering
-// waits until the label request has come back too.
 async function loadArtists() {
-  const response = await fetch('http://localhost:3000/artists');
-  if (!response.ok) {
-    throw new Error(`Artists request failed with status ${response.status}`);
-  }
-  const data = await response.json();
-  for (const [index, artist] of data.entries()) {
-    try {
-      checkArtistData(artist);
-    } catch (error) {
-      throw new Error(
-        `Stretch Records artist page, validating roster record ` +
-        `${index + 1} of artists: ${error.message}`,
-        { cause: error }
-      );
+  msg_elm.textContent = 'Loading artists...';
+  try {
+    const response = await fetch('artists.json');
+    const data = await response.json();
+    for (const [index, artist] of data.entries()) {
+      try {
+        checkArtistData(artist);
+      } catch (error) {
+        throw new Error(
+          `Stretch Records artist page, validating roster record ` +
+          `${index + 1} of artists.json: ${error.message}`,
+          { cause: error }
+        );
+      }
     }
+    renderCards(data);
+    msg_elm.textContent = '';
+  } catch (error) {
+    msg_elm.textContent = `Error loading artists: ${error.message}`;
   }
-  return data;
 }
 
 class MissingArtistDataError extends Error {
@@ -39,16 +40,6 @@ function checkArtistData(artist) {
   if (!artist.name) {
     throw new MissingArtistDataError('Artist is missing a name');
   }
-}
-
-// The label's own details, from a second server. Same rule: fetch, check,
-// return. Nothing is rendered here either.
-async function loadLabel() {
-  const response = await fetch('http://localhost:3001/label');
-  if (!response.ok) {
-    throw new Error(`Label request failed with status ${response.status}`);
-  }
-  return response.json();
 }
 
 const cardArea = document.querySelector('.cards');
@@ -103,34 +94,16 @@ const genreInput = document.querySelector('#artist-genre');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const newArtist = { name: nameInput.value, genre: genreInput.value };
-
-  const options = {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json',},
-    body: JSON.stringify(newArtist),
-  };
-  
-  // ensure response status 201
-  const response = fetch('http://localhost:3000/artists', options)
-  
-  console.log(response.status);
-
+  const name = nameInput.value;
+  if (name) {
+    const genre = genreInput.value || 'Unsigned';
+    renderCards([{ name: name, genre: genre, total: '0:00' }]);
+    nameInput.value = '';
+    genreInput.value = '';
+  }
 });
 
-function renderLabel(label) {
-  console.log(`Stretch Records label: ${label.name}, ${label.city}`);
-}
-
-
-msg_elm.textContent = 'Loading artists...';
-
-Promise.all([loadArtists(), loadLabel()])
-  .then(([artists, label]) => {
-    renderCards(artists);
-    renderLabel(label);
-    msg_elm.textContent = '';
-  })
-  .catch((error) => {
-    msg_elm.textContent = `Error loading the page: ${error.message}`;
-  });
+// Kick off the load. Called from the bottom so everything it reaches
+// (the error class, checkArtistData, renderCards, cardArea, roster) is
+// already defined.
+loadArtists();
